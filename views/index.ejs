@@ -1,1 +1,15 @@
-Hello, World!
+<% include header %>
+<div id="main" ng-app="myApp" ng-controller="search">
+<% include navbar %>
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Am I online?" ng-change="search()" ng-model="searchValue">
+    </div>
+    <div class="results" ng-show="results.length" ng-cloak>
+      <div class="result" ng-repeat="x in results">
+        <span ng-bind="x"></span> - Cool
+      </div>
+    </div>
+  </div>
+</div>
+<% include footer %>
