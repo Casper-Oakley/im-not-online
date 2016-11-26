@@ -15,12 +15,29 @@ var app = express();
 
 mongoose.connect('mongodb://localhost/accounts');
 
-var Account = app.account = restful.model('resource', mongoose.Schema({
-    name: String,
-    aaa: String
-  }))
+var AccountSchema = mongoose.Schema({
+  name: String,
+  aaa: String
+}).index({name: 'text'});
+
+var Account = app.account = restful.model('account', AccountSchema)
   .methods(['get', 'post', 'put', 'delete']);
 
+
+Account.remove({}, function(){});
+
+var seeds = [new Account({ name: 'Casper Oakley', aaa: 'cool'}),
+  new Account({ name: 'Rich Davies', aaa: 'caool'}),
+  new Account({ name: 'Elias Khoury', aaa: 'caaool'}),
+  new Account({ name: 'Harry Bland', aaa: 'coaaaol'})];
+
+seeds.forEach(function(e) {
+  e.save(function (err) {
+    if (err) {
+      console.log(err);
+    }
+  });
+});
 
 
 //boilerplate express. Using EJS, body parser and cookie parser
@@ -46,13 +63,19 @@ app.get('/', function(req, res) {
 
 //Route for searching
 app.get('/:name', function(req, res) {
-  res.json({a:'b'});
-  res.end();
+  Account.find({$text: {$search: req.params.name}},{score: {$meta: "textScore"}}).
+    sort({score: {$meta : 'textScore'}}).exec(function(err, docs) {
+    if(err) {
+      console.log(err);
+      res.status(500).send(err);
+      res.end();
+    } else {
+      res.status(200).json(docs);
+    }
+  });
 });
 
 Account.register(app, '/accounts');
-
-
 
 
 //Any uncaught routes go to 404
