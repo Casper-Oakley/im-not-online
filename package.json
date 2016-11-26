@@ -20,5 +20,15 @@
   "bugs": {
     "url": "https://github.com/Casper-Oakley/im-not-online/issues"
   },
-  "homepage": "https://github.com/Casper-Oakley/im-not-online#readme"
+  "homepage": "https://github.com/Casper-Oakley/im-not-online#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.0",
+    "morgan": "^1.7.0",
+    "node-restful": "^0.2.5",
+    "serve-favicon": "^2.3.2"
+  }
 }
