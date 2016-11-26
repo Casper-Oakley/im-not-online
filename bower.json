@@ -1,0 +1,22 @@
+{
+  "name": "im-not-online",
+  "description": "http://imnot.online",
+  "main": "app.js",
+  "authors": [
+    "Casper Oakley"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "im",
+    "not",
+    "online"
+  ],
+  "homepage": "https://github.com/Casper-Oakley/im-not-online",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

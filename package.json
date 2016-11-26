@@ -1,0 +1,24 @@
+{
+  "name": "im-not-online",
+  "version": "0.0.1",
+  "description": "http://imnot.online",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodejs app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Casper-Oakley/im-not-online.git"
+  },
+  "keywords": [
+    "im",
+    "not",
+    "online"
+  ],
+  "author": "Casper Oakley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Casper-Oakley/im-not-online/issues"
+  },
+  "homepage": "https://github.com/Casper-Oakley/im-not-online#readme"
+}
