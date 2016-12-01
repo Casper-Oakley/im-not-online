@@ -2,11 +2,15 @@ var express = require('express'),
     path = require('path'),
     logger = require('morgan'),
     http = require('http'),
+    request = require('request'),
     cookieParser = require('cookie-parser'),
     favicon = require('serve-favicon'),
     restful = require('node-restful'),
+    async = require('async'),
     mongoose = restful.mongoose,
     bodyParser = require('body-parser');
+
+var config = require('./config.json');
 
 
 var app = express();
@@ -26,10 +30,10 @@ var Account = app.account = restful.model('account', AccountSchema)
 
 Account.remove({}, function(){});
 
-var seeds = [new Account({ name: 'Casper Oakley', aaa: 'cool'}),
-  new Account({ name: 'Rich Davies', aaa: 'caool'}),
-  new Account({ name: 'Elias Khoury', aaa: 'caaool'}),
-  new Account({ name: 'Harry Bland', aaa: 'coaaaol'})];
+var seeds = [new Account({ name: 'Casper Oakley', steamid: 'STEAM_0:0:17640828'}),
+  new Account({ name: 'Rich Davies', steamid: null}),
+  new Account({ name: 'Elias Khoury', steamid: null}),
+  new Account({ name: 'Harry Bland', steamid: 'STEAM_0:1:23385633'})];
 
 seeds.forEach(function(e) {
   e.save(function (err) {
@@ -73,6 +77,32 @@ app.get('/:name', function(req, res) {
       res.status(200).json(docs);
     }
   });
+});
+
+app.post('/process', function(req, res) {
+  if(req.body.name) {
+    var results = {};
+    async.waterfall([function(cb) {
+        request( 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + config.steam + '&steamids=' + req.body.steamid, function(err, response, body) {
+          if(err) {
+            results.steamid = body;
+            cb(null);
+          } else {
+            results.steamid = null;
+            cb(null);
+          }
+        });
+      }],function(err) {
+    });
+    if(req.body.steamid) {
+    } else {
+      results.steamid = null;
+    }
+    res.status(200).json(results);
+  } else {
+    res.status(400).send('Invalid input.');
+    res.end();
+  }
 });
 
 Account.register(app, '/accounts');
