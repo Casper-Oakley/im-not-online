@@ -1,17 +1,45 @@
 .navbar {
   border-radius: 0px;
+  margin-bottom: 0px;
+  font-size:20px;
 }
 
-.navbar {
-  margin-bottom: 0px;
-  opacity: 0.6;
-  filter: alpha(opacity=60);
+#navbar {
+  background-color: rgba(228,228,228,0.5);
+  background: none;
+  border: 0px;
 }
+
+#navbar:hover {
+  background-color: rgba(228,228,228,1.0);
+  transition: background-color 0.3s ease-in-out;
+}
+
+#navbar a {
+  /*color: #e4e4e4;*/
+  box-shadow: none;
+}
+
+#navbar a:hover {
+  /*color: #3399f3;*/
+}
+
 
 .search-bar {
   text-align: center;
   margin-top:10%;
 }
+
+.description-box {
+  margin: 10px;
+  margin-top: 30px;
+  /*opacity: 0.6;*/
+  /*background-color: #252323;*/
+  background-color: #31231E;
+  border-radius: 50px;
+  padding: 10px;
+}
+
 
 .results {
   margin: 10px;
@@ -29,12 +57,12 @@
 #search {
   border-radius:20px;
   font-size: 64px;
-  box-shadow: 0 0 5px rgb(97, 155, 249);
+  box-shadow: 0 0 5px #3C7FA3;
   transition: box-shadow 0.3s ease-in-out;
 }
 
 #search:focus {
-  box-shadow: 0 0 50px 10px rgb(97, 155, 249);
+  box-shadow: 0 0 50px 10px #3C7FA3;
   border-size: 0px;
   outline: none;
   transition: box-shadow 0.3s ease-in-out;

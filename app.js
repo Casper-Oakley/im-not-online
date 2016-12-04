@@ -116,7 +116,7 @@ app.use(function(req, res, next) {
 });
 
 //Once server instance setup, run socket IO
-var server = app.listen(3000, function() {
+var server = app.listen(3003, function() {
   var host = 'localhost';
   var port = server.address().port;
   console.log('App listening at http://' + host + ':' + port);
